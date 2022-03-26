@@ -64,7 +64,7 @@ export const AmountContainer = styled.div`
 `;
 
 export const TextTitle = styled.p`
-  color: ${({ color }) => color ? color : "#fff"};
+  color: ${({ color }) => color ? color : "var(--primary-text)"};
   font-size: ${({ size }) => size ? size + "rem" : "2.2rem"};
   font-weight: 500;
   line-height: 1.1;
@@ -81,7 +81,7 @@ export const TextTitle = styled.p`
 `;
 
 export const TextSubTitle = styled.p`
-  color: ${({ color }) => color ? color : "#fff"};
+  color: ${({ color }) => color ? color : "var(--primary-text)"};
   font-size: ${({ size }) => size ? size + "rem" : "1.5rem"};
   font-family: 'wonder';
   text-align:${({ align }) => align ? align : "center"};
@@ -90,7 +90,7 @@ export const TextSubTitle = styled.p`
 
 
 export const TextDescription = styled.p`
-  color: ${({ color }) => color ? color : "#fff"};
+  color: ${({ color }) => color ? color : "var(--primary-text)"};
   font-size: ${({ size }) => size ? size : "1.5rem"};
   line-height: 1.6;
   font-family: 'wonder';
@@ -129,8 +129,8 @@ column-gap:${({ gap }) => (gap ? gap + "%" : "20%")};
 
 export const Mint = styled.div`
   padding:40px 80px;
-  background-color: rgba(0, 0, 0, 0.9);
-  border:1px solid #4b4b4b;
+  background-color: rgba(255, 255, 255, 0.8);
+  // border:1px solid #4b4b4b;
   border-radius:25px;
   width: 40%;
 
@@ -168,7 +168,7 @@ export const Image = styled.img`
 
 export const Line = styled.hr`
   width:100%;
-  border:1px solid #fff;
+  border:1px solid var(--primary-text);
 `;
 
 export const FlexContainer = styled.div`
@@ -205,7 +205,7 @@ export const maxButton = styled.button`
   border-radius:10px;
   font-family: 'wonder';
   font-size:1.5rem;
-  color: #fff !important ;
+  color: var(--primary-text) !important ;
 
   @media screen and (max-width: 768px) {
     position: relative;

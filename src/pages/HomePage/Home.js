@@ -198,7 +198,7 @@ function Home() {
           jc={"space-evenly"}
           ai={"center"}
           fd={"row"}
-          mt={"20vh"}
+          mt={"25vh"}
         >
           <s.Mint>
             <s.TextTitle size={6.0} style={{ letterSpacing: "3px" }}>
@@ -284,7 +284,7 @@ function Home() {
                 <s.connectButton
                   style={{
                     textAlign: "center",
-                    color: "#fff",
+                    color: "var(--primary-text)",
                     cursor: "pointer",
                   }}
                   disabled={state == 0 ? 1 : 0}
@@ -305,7 +305,7 @@ function Home() {
               <s.connectButton
                 style={{
                   textAlign: "center",
-                  color: "#fff",
+                  color: "var(primary-text)",
                   cursor: "pointer",
                 }}
               >
@@ -320,7 +320,7 @@ function Home() {
               <s.connectButton
                 style={{
                   textAlign: "center",
-                  color: "#fff",
+                  color: "var(--primary-text)",
                   cursor: "pointer",
                 }}
               >
@@ -335,7 +335,7 @@ function Home() {
               <s.connectButton
                 style={{
                   textAlign: "center",
-                  color: "#fff",
+                  color: "var(--primary-text)",
                   cursor: "pointer",
                 }}
               >
