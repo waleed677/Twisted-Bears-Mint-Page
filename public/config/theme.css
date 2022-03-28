@@ -16,6 +16,16 @@ body{
 } */
 
 
+@media screen and (max-width: 480px) {
+  body {
+  background-image: url('./images/bg.png') !important; ;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center ;
+  }
+}
+
+
 
 .flexContainer{
   display:flex;

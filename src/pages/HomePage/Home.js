@@ -294,7 +294,7 @@ function Home() {
                     getData();
                   }}
                 >
-                  Connect to Wallet
+                  Connect Your Wallet
                 </s.connectButton>
                 {/* ) : ("")} */}
               </>
