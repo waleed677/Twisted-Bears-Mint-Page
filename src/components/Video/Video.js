@@ -4,7 +4,7 @@ import { Overlay, VideoContainer } from './Video.element'
 function Video() {
     return (
         <>
-            <VideoContainer>
+            {/* <VideoContainer> */}
                 <video
                     loop
                     muted
@@ -12,7 +12,7 @@ function Video() {
                     >
                     <source src={"config/images/bg.mp4"} type="video/mp4" />
                 </video>
-            </VideoContainer>
+            {/* </VideoContainer> */}
 
         </>
     )
