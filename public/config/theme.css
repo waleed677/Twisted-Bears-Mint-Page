@@ -20,8 +20,12 @@ body{
   body {
   background-image: url('./images/bg.png') !important; ;
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 100% 112%;
   background-position: center ;
+  }
+
+  #myVideo{
+    display: none;
   }
 }
 

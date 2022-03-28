@@ -6,6 +6,7 @@ function Video() {
         <>
             <VideoContainer>
                 <video
+                id='myVideo'
                     loop
                     muted
                     autoPlay

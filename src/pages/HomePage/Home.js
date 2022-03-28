@@ -18,7 +18,7 @@ function Home() {
   const [claimingNft, setClaimingNft] = useState(false);
   const [mintDone, setMintDone] = useState(false);
   const [supply, setTotalSupply] = useState(0);
-  const [feedback, setFeedback] = useState("Minting is not Live Yet");
+  const [feedback, setFeedback] = useState("");
   const [mintAmount, setMintAmount] = useState(1);
   const [displayCost, setDisplayCost] = useState(cost);
   const [state, setState] = useState(-1);
@@ -316,7 +316,7 @@ function Home() {
 
             )}
 
-            {(state !== 1) && (state !== 2) ? (
+            {/* {(state !== 1) && (state !== 2) ? (
               <s.connectButton
                 style={{
                   textAlign: "center",
@@ -329,7 +329,7 @@ function Home() {
             ) : (
               ""
 
-            )}
+            )} */}
 
             {(canMintWL !== true) && (state == 2) ? (
               <s.connectButton
