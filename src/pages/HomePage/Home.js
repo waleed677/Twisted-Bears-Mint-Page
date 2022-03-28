@@ -317,7 +317,7 @@ function Home() {
 
             )}
 
-            {/* {(state !== 1) && (state !== 2) ? (
+            {(state !== -1 ) && (state === 0) ? (
               <s.connectButton
                 style={{
                   textAlign: "center",
@@ -330,7 +330,7 @@ function Home() {
             ) : (
               ""
 
-            )} */}
+            )}
 
             {(canMintWL !== true) && (state == 1) ? (
               <s.connectButton
