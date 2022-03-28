@@ -154,10 +154,11 @@ function Home() {
         setDisplayCost(0.00);
         setFeedback(`Minting is not Live yet"`);
         setDisable(true);
-      } else if (currentState == 2) {
+      } else if (currentState == 1) {
         let mintWL = await blockchain.smartContract.methods
           .isWhitelisted(blockchain.account)
           .call();
+          console.log({ mintWL });
         setCanMintWL(mintWL);
         (mintWL) ? "" : setFeedback(`You are not WhiteListed Member!!!`);
         (mintWL) ? setDisable(false) : setDisable(true);
@@ -331,7 +332,7 @@ function Home() {
 
             )} */}
 
-            {(canMintWL !== true) && (state == 2) ? (
+            {(canMintWL !== true) && (state == 1) ? (
               <s.connectButton
                 style={{
                   textAlign: "center",
