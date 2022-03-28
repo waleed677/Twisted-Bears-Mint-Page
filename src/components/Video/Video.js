@@ -9,7 +9,7 @@ function Video() {
                     loop
                     muted
                     autoPlay
-                    controls={false}>
+                    >
                     <source src={"config/images/bg.mp4"} type="video/mp4" />
                 </video>
             </VideoContainer>

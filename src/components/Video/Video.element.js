@@ -9,5 +9,5 @@ export const VideoContainer = styled.div`
   position: fixed;
   right: 0;
   top: 0;
-  z-index: -1;
+  z-index: -999;
 `
