@@ -92,35 +92,12 @@ function Home() {
     }
 
     setMintAmount(newMintAmount);
-    if (state == 1) {
-      setDisplayCost(
-        parseFloat(CONFIG.DISPLAY_COST_OG * newMintAmount).toFixed(3)
-      );
-    } else if (state == 2) {
-      setDisplayCost(
-        parseFloat(CONFIG.DISPLAY_COST_WL * newMintAmount).toFixed(3)
-      );
-    } else {
-      setDisplayCost(
-        parseFloat(CONFIG.DISPLAY_COST_PU * newMintAmount).toFixed(3)
-      );
-    }
   };
 
   const incrementMintAmount = () => {
     let newMintAmount = mintAmount + 1;
-
-    if (state == 1) {
-      newMintAmount > 2
-        ? (newMintAmount = 2)
-        : newMintAmount;
-      setDisplayCost(
-        parseFloat(CONFIG.DISPLAY_COST_WL * newMintAmount).toFixed(3)
-      );
-    } else {
-      setDisplayCost(
-        parseFloat(CONFIG.DISPLAY_COST_PU * newMintAmount).toFixed(3)
-      );
+    if (newMintAmount > 2) {
+      newMintAmount = 2;
     }
     setMintAmount(newMintAmount);
   };
