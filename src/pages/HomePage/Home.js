@@ -72,7 +72,7 @@ function Home() {
       })
       .then((receipt) => {
         setMintDone(true);
-        setFeedback(`Mint Complete , Welcome to the Bear NFT is Yours!`);
+        setFeedback(`Complete , Welcome to the Twisted Family!`);
         setClaimingNft(false);
         blockchain.smartContract.methods
           .totalSupply()
@@ -254,7 +254,7 @@ function Home() {
                   }}
                 >
                   {" "}
-                  {claimingNft ? "Confirm Transaction in Wallet" : "Mint"}{" "}
+                  {claimingNft ? "Please Confirm the Transaction in Your Wallet" : "Mint"}{" "}
                   {mintDone ? feedback : ""}{" "}
                 </s.connectButton>{" "}
               </s.Container>
