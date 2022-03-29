@@ -72,7 +72,7 @@ function Home() {
       })
       .then((receipt) => {
         setMintDone(true);
-        setFeedback(`Done, the ${CONFIG.NFT_NAME} is yours!`);
+        setFeedback(`Mint Complete , Welcome to the Bear NFT is Yours!`);
         setClaimingNft(false);
         blockchain.smartContract.methods
           .totalSupply()
@@ -137,7 +137,7 @@ function Home() {
           .call();
           console.log({ mintWL });
         setCanMintWL(mintWL);
-        (mintWL) ? "" : setFeedback(`You are not WhiteListed Member!!!`);
+        (mintWL) ? "" : setFeedback(`This wallet is not on the Whitelist`);
         (mintWL) ? setDisable(false) : setDisable(true);
 
         setDisplayCost(CONFIG.DISPLAY_COST_WL);
@@ -241,7 +241,9 @@ function Home() {
             <s.Line />
             <s.SpacerSmall />
             <s.SpacerLarge />
-            {blockchain.account !== "" && blockchain.smartContract !== null && blockchain.errorMsg === "" ? (
+            {blockchain.account !== "" && blockchain.smartContract !== null && blockchain.errorMsg === ""
+              && canMintWL === true && state == 1
+            ? (
               <s.Container ai={"center"} jc={"center"} fd={"row"}>
                 <s.connectButton
                   disabled={disable}
