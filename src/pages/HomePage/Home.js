@@ -180,7 +180,7 @@ function Home() {
   
         >
           <s.TextTitle size={4.0} color={"#ffffff"} style={{ letterSpacing: "3px", padding: 20 }}>
-              MINTING 3rd APRIL 2022 10AM EST
+              MINTING 3rd APRIL 2022<br />10AM EST
             </s.TextTitle>
         </s.FlexContainer>
         <s.SpacerLarge />
