@@ -70,7 +70,7 @@ export const TextTitle = styled.p`
   line-height: 1.1;
   font-family: 'wonder';
   text-align:center ;
-  color: var(--primary) !important ;
+  // color: var(--primary) !important ;
   
 
   @media only screen and (max-width: 768px) {
