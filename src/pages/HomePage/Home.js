@@ -374,6 +374,11 @@ function Home() {
           </s.Mint>
         </s.FlexContainer>
         <s.SpacerLarge />
+        <s.TextTitle size={3} color={"white"}>
+          MINTING 3RD APRIL 2022
+          <br />
+          10AM EST
+        </s.TextTitle>
       </s.Body>
 
     </>
