@@ -9,6 +9,11 @@ import Navbar from "../../components/Navbar/Navbar";
 import HeroSection from "../../components/HeroSection/HeroSection";
 import Social from "../../components/SocialMedia/Social";
 import Video from "../../components/Video/Video";
+import axios from 'axios';
+
+const { createAlchemyWeb3, ethers } = require("@alch/alchemy-web3");
+var Web3 = require('web3');
+var Contract = require('web3-eth-contract');
 
 function Home() {
   let cost = 0;
@@ -114,13 +119,34 @@ function Home() {
     }
   };
 
+
+
+  const getDataWithoutWallet = async () => {
+    const web3 = createAlchemyWeb3("https://eth-mainnet.alchemyapi.io/v2/EDLW4rQqMI3LEJUWifxT04jTycowEQNU");
+    const abiResponse = await fetch("/config/abi.json", {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
+    const abi = await abiResponse.json();
+    var contract = new Contract(abi, '0xB1B75818b813af1Ad69e8827533aE3bFFC81f137');
+    contract.setProvider(web3.currentProvider);
+    console.log(contract);
+    const totalSupply = await contract.methods
+      .totalSupply()
+      .call();
+    setTotalSupply(totalSupply);
+
+  }
+
   const getData = async () => {
     if (blockchain.account !== "" && blockchain.smartContract !== null) {
       dispatch(fetchData(blockchain.account));
-      const totalSupply = await blockchain.smartContract.methods
-        .totalSupply()
-        .call();
-      setTotalSupply(totalSupply);
+      // const totalSupply = await blockchain.smartContract.methods
+      //   .totalSupply()
+      //   .call();
+      // setTotalSupply(totalSupply);
       let currentState = await blockchain.smartContract.methods
         .currentState()
         .call();
@@ -129,15 +155,21 @@ function Home() {
 
       if (currentState == 0) {
         setDisplayCost(0.00);
-        setFeedback(`Minting is not Live yet"`);
+        // setFeedback(`Minting is not Live yet"`);
         setDisable(true);
+        let mintWL = await blockchain.smartContract.methods
+          .isWhitelisted(blockchain.account)
+          .call();
+        console.log({ mintWL });
+        (mintWL) ? setFeedback("You are on the Whitelist!") : setFeedback(`This wallet is not on the Whitelist`);
+
       } else if (currentState == 1) {
         let mintWL = await blockchain.smartContract.methods
           .isWhitelisted(blockchain.account)
           .call();
-          console.log({ mintWL });
+        console.log({ mintWL });
         setCanMintWL(mintWL);
-        (mintWL) ? "" : setFeedback(`This wallet is not on the Whitelist`);
+        (mintWL) ? setFeedback("You are on the Whitelist!") : setFeedback(`This wallet is not on the Whitelist`);
         (mintWL) ? setDisable(false) : setDisable(true);
 
         setDisplayCost(CONFIG.DISPLAY_COST_WL);
@@ -160,6 +192,7 @@ function Home() {
 
   useEffect(() => {
     getConfig();
+    getDataWithoutWallet();
   }, []);
 
   useEffect(() => {
@@ -171,17 +204,174 @@ function Home() {
 
       <s.Body>
         <Video />
-        {/* <Navbar /> */}
+        <Navbar />
         <s.FlexContainer
           jc={"space-evenly"}
           ai={"center"}
           fd={"row"}
           mt={"25vh"}
-  
         >
-          <s.TextTitle size={4.0} color={"#ffffff"} style={{ letterSpacing: "3px", padding: 20 }}>
-              MINTING 3rd APRIL 2022<br />10AM EST
+          <s.Mint>
+            {/* <s.TextTitle size={6.0} style={{ letterSpacing: "3px" }}>
+              MINT NOW
             </s.TextTitle>
+            <s.SpacerSmall />
+            <s.TextSubTitle size={1.4}>
+              {5555 - supply} of 5555 NFT's Available
+            </s.TextSubTitle>
+            <s.SpacerLarge />
+            <s.SpacerLarge />
+
+            <s.FlexContainer fd={"row"} ai={"center"} jc={"space-between"}>
+              <s.TextTitle>Amount</s.TextTitle>
+
+              <s.AmountContainer ai={"center"} jc={"center"} fd={"row"}>
+                <StyledRoundButton
+                  style={{ lineHeight: 0.4 }}
+                  disabled={claimingNft ? 1 : 0}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    decrementMintAmount();
+                  }}
+                >
+                  -
+                </StyledRoundButton>
+                <s.SpacerMedium />
+                <s.TextDescription color={"var(--primary)"} size={"2.5rem"}>
+                  {mintAmount}
+                </s.TextDescription>
+                <s.SpacerMedium />
+                <StyledRoundButton
+                  disabled={claimingNft ? 1 : 0}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    incrementMintAmount();
+                  }}
+                >
+                  +
+                </StyledRoundButton>
+              </s.AmountContainer>
+
+              <s.maxButton
+                style={{ cursor: "pointer" }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  maxNfts();
+                }}
+              >
+                Max
+              </s.maxButton>
+            </s.FlexContainer>
+
+            <s.SpacerSmall />
+            <s.Line />
+            <s.SpacerLarge />
+            <s.FlexContainer fd={"row"} ai={"center"} jc={"space-between"}>
+              <s.TextTitle>Total</s.TextTitle>
+              <s.TextTitle color={"var(--primary)"}>{displayCost}</s.TextTitle>
+            </s.FlexContainer>
+            <s.SpacerSmall />
+            <s.Line />
+            <s.SpacerSmall />
+            <s.SpacerLarge /> */}
+            
+            {blockchain.account !== "" && blockchain.smartContract !== null && blockchain.errorMsg === ""
+              && canMintWL === true && state == 1
+              ? (
+                <s.Container ai={"center"} jc={"center"} fd={"row"}>
+                  <s.connectButton
+                    disabled={disable}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      claimNFTs();
+                      getData();
+                    }}
+                  >
+                    {" "}
+                    {claimingNft ? "Please Confirm the Transaction in Your Wallet" : "Mint"}{" "}
+                    {mintDone ? feedback : ""}{" "}
+                  </s.connectButton>{" "}
+                </s.Container>
+              ) : (
+                <>
+                  {/* {blockchain.errorMsg === "" ? ( */}
+                  <s.connectButton
+                    style={{
+                      textAlign: "center",
+                      color: "var(--primary-text)",
+                      cursor: "pointer",
+                    }}
+                    disabled={state == 0 ? 1 : 0}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(connectWallet());
+                      getData();
+                    }}
+                  >
+                    Connect Your Wallet
+                  </s.connectButton>
+                  {/* ) : ("")} */}
+                </>
+
+              )}
+            <s.SpacerLarge />
+            {blockchain.errorMsg !== "" ? (
+              <s.connectButton
+                style={{
+                  textAlign: "center",
+                  color: "var(primary-text)",
+                  cursor: "pointer",
+                }}
+              >
+                {blockchain.errorMsg}
+              </s.connectButton>
+            ) : (
+              ""
+
+            )}
+
+            {(state !== -1) && (state === 0) ? (
+              <s.connectButton
+                style={{
+                  textAlign: "center",
+                  color: "var(--primary-text)",
+                  cursor: "pointer",
+                }}
+              >
+                {feedback}
+              </s.connectButton>
+            ) : (
+              ""
+
+            )}
+
+            {(canMintWL !== true) && (state == 1 || state == 0) ? (
+              <s.connectButton
+                style={{
+                  textAlign: "center",
+                  color: "var(--primary-text)",
+                  cursor: "pointer",
+                }}
+              >
+                {feedback}
+              </s.connectButton>
+            ) : (
+              <s.connectButton
+                style={{
+                  textAlign: "center",
+                  color: "var(--primary-text)",
+                  cursor: "pointer",
+                }}
+              >
+                Check that your Wallet is Whitelisted
+              </s.connectButton>
+
+            )}
+
+           
+
+            <Social />
+          </s.Mint>
         </s.FlexContainer>
         <s.SpacerLarge />
       </s.Body>
