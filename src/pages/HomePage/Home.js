@@ -96,6 +96,17 @@ function Home() {
       newMintAmount = 1;
     }
 
+    if(state == 0 || state == -1 ){
+      setDisplayCost(0.00);
+    }
+    else if (state == 1) {
+      setDisplayCost(
+        parseFloat(CONFIG.DISPLAY_COST_WL * newMintAmount).toFixed(3)
+      );
+    } else {
+      setDisplayCost(parseFloat(CONFIG.DISPLAY_COST_PU * newMintAmount).toFixed(3));
+    }
+
     setMintAmount(newMintAmount);
   };
 
