@@ -95,7 +95,7 @@ function Home() {
     if (newMintAmount < 1) {
       newMintAmount = 1;
     }
-
+    setMintAmount(newMintAmount);
     if(state == 0 || state == -1 ){
       setDisplayCost(0.00);
     }
@@ -107,15 +107,26 @@ function Home() {
       setDisplayCost(parseFloat(CONFIG.DISPLAY_COST_PU * newMintAmount).toFixed(3));
     }
 
-    setMintAmount(newMintAmount);
+    
   };
 
   const incrementMintAmount = () => {
     let newMintAmount = mintAmount + 1;
+    console.log(newMintAmount);
     if (newMintAmount > 2) {
       newMintAmount = 2;
     }
     setMintAmount(newMintAmount);
+    if(state == 0 || state == -1 ){
+      setDisplayCost(0.00);
+    }
+    else if (state == 1) {
+      setDisplayCost(
+        parseFloat(CONFIG.DISPLAY_COST_WL * newMintAmount).toFixed(3)
+      );
+    } else {
+      setDisplayCost(parseFloat(CONFIG.DISPLAY_COST_PU * newMintAmount).toFixed(3));
+    }
   };
 
   const maxNfts = () => {
