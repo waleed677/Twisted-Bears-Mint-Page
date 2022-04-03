@@ -108,7 +108,10 @@ function Home() {
   };
 
   const maxNfts = () => {
-    if (state == 1) {
+    if(state == 0 || state == -1 ){
+      setDisplayCost(0.00);
+    }
+    else if (state == 1) {
       setMintAmount(CONFIG.MAX_LIMIT);
       setDisplayCost(
         parseFloat(CONFIG.DISPLAY_COST_WL * CONFIG.MAX_LIMIT).toFixed(3)
