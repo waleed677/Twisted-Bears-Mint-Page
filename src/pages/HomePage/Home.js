@@ -143,10 +143,6 @@ function Home() {
   const getData = async () => {
     if (blockchain.account !== "" && blockchain.smartContract !== null) {
       dispatch(fetchData(blockchain.account));
-      // const totalSupply = await blockchain.smartContract.methods
-      //   .totalSupply()
-      //   .call();
-      // setTotalSupply(totalSupply);
       let currentState = await blockchain.smartContract.methods
         .currentState()
         .call();
@@ -155,14 +151,8 @@ function Home() {
 
       if (currentState == 0) {
         setDisplayCost(0.00);
-        // setFeedback(`Minting is not Live yet"`);
         setDisable(true);
-        let mintWL = await blockchain.smartContract.methods
-          .isWhitelisted(blockchain.account)
-          .call();
-        console.log({ mintWL });
-        (mintWL) ? setFeedback("You are on the Whitelist!") : setFeedback(`This wallet is not on the Whitelist`);
-
+        setFeedback("Minting is not live yet!")
       } else if (currentState == 1) {
         let mintWL = await blockchain.smartContract.methods
           .isWhitelisted(blockchain.account)
@@ -212,7 +202,7 @@ function Home() {
           mt={"25vh"}
         >
           <s.Mint>
-            {/* <s.TextTitle size={6.0} style={{ letterSpacing: "3px" }}>
+            <s.TextTitle size={6.0} style={{ letterSpacing: "3px" }}>
               MINT NOW
             </s.TextTitle>
             <s.SpacerSmall />
@@ -273,10 +263,10 @@ function Home() {
             <s.SpacerSmall />
             <s.Line />
             <s.SpacerSmall />
-            <s.SpacerLarge /> */}
-            
+            <s.SpacerLarge />
+
             {blockchain.account !== "" && blockchain.smartContract !== null && blockchain.errorMsg === ""
-              && canMintWL === true && state == 1
+              && canMintWL === true && state == 1 || state == 2 
               ? (
                 <s.Container ai={"center"} jc={"center"} fd={"row"}>
                   <s.connectButton
@@ -314,6 +304,8 @@ function Home() {
                 </>
 
               )}
+
+
             <s.SpacerLarge />
             {blockchain.errorMsg !== "" ? (
               <s.connectButton
@@ -330,7 +322,7 @@ function Home() {
 
             )}
 
-            {(state !== -1) && (state === 0) ? (
+            {(state !== -1) && (state == 0) ? (
               <s.connectButton
                 style={{
                   textAlign: "center",
@@ -345,7 +337,7 @@ function Home() {
 
             )}
 
-            {(canMintWL !== true) && (state == 1 || state == 0) ? (
+            {(canMintWL !== true) && (state == 1) ? (
               <s.connectButton
                 style={{
                   textAlign: "center",
@@ -356,29 +348,31 @@ function Home() {
                 {feedback}
               </s.connectButton>
             ) : (
-              <s.connectButton
-                style={{
-                  textAlign: "center",
-                  color: "var(--primary-text)",
-                  cursor: "pointer",
-                }}
-              >
-                Check that your Wallet is Whitelisted
-              </s.connectButton>
+              ""
+              
+              // <s.connectButton
+              //   style={{
+              //     textAlign: "center",
+              //     color: "var(--primary-text)",
+              //     cursor: "pointer",
+              //   }}
+              // >
+              //   Public Minting is Live!
+              // </s.connectButton>
 
             )}
 
-           
+
 
             <Social />
           </s.Mint>
         </s.FlexContainer>
         <s.SpacerLarge />
-        <s.TextTitle size={3} color={"white"}>
+        {/* <s.TextTitle size={3} color={"white"}>
           MINTING 3RD APRIL 2022
           <br />
           10AM EST
-        </s.TextTitle>
+        </s.TextTitle> */}
       </s.Body>
 
     </>
