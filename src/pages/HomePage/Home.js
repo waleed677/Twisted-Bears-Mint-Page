@@ -91,7 +91,7 @@ function Home() {
   };
 
   const decrementMintAmount = () => {
-    let newMintAmount = mintAmount - 1;
+    let newMintAmount = mintAmount - 2;
     if (newMintAmount < 2) {
       newMintAmount = 2;
     }
