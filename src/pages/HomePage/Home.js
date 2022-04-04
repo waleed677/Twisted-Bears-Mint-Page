@@ -24,7 +24,7 @@ function Home() {
   const [mintDone, setMintDone] = useState(false);
   const [supply, setTotalSupply] = useState(0);
   const [feedback, setFeedback] = useState("");
-  const [mintAmount, setMintAmount] = useState(1);
+  const [mintAmount, setMintAmount] = useState(2);
   const [displayCost, setDisplayCost] = useState(cost);
   const [state, setState] = useState(-1);
   const [canMintWL, setCanMintWL] = useState(false);
@@ -92,8 +92,8 @@ function Home() {
 
   const decrementMintAmount = () => {
     let newMintAmount = mintAmount - 1;
-    if (newMintAmount < 1) {
-      newMintAmount = 1;
+    if (newMintAmount < 2) {
+      newMintAmount = 2;
     }
     setMintAmount(newMintAmount);
     if(state == 0 || state == -1 ){
@@ -111,10 +111,10 @@ function Home() {
   };
 
   const incrementMintAmount = () => {
-    let newMintAmount = mintAmount + 1;
+    let newMintAmount = mintAmount + 2;
     console.log(newMintAmount);
-    if (newMintAmount > 2) {
-      newMintAmount = 2;
+    if (newMintAmount > 8) {
+      newMintAmount = 8;
     }
     setMintAmount(newMintAmount);
     if(state == 0 || state == -1 ){
@@ -140,7 +140,7 @@ function Home() {
       );
     } else {
       setMintAmount(CONFIG.MAX_LIMIT);
-      setDisplayCost(parseFloat(CONFIG.DISPLAY_COST_PU * CONFIG.MAX_LIMIT).toFixed(3));
+      setDisplayCost(parseFloat(CONFIG.DISPLAY_COST_PU * 8).toFixed(3));
     }
   };
 
@@ -232,7 +232,7 @@ function Home() {
             </s.TextTitle>
             <s.SpacerSmall />
             <s.TextSubTitle size={1.4}>
-              {5555 - supply} of 5555 NFT's Available
+              {2222 - supply} of 2222 NFT's Available
             </s.TextSubTitle>
             <s.SpacerLarge />
             <s.SpacerLarge />
