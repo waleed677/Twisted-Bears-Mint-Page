@@ -223,10 +223,12 @@ function Home() {
         <s.FlexContainer
           jc={"space-evenly"}
           ai={"center"}
-          fd={"row"}
+          fd={"column"}
           mt={"25vh"}
         >
          <s.Image wid={"25"} src={"config/images/soldout.jpeg"} />
+         <s.SpacerLarge />
+         <s.TextTitle><a href="https://opensea.io/collection/twisted-bears" target="_blank">Click Here to Visit Opensea</a></s.TextTitle>
         </s.FlexContainer>
         <s.SpacerLarge />
         {/* <s.TextTitle size={3} color={"white"}>
