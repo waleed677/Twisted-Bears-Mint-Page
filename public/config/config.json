@@ -4,7 +4,7 @@
   "NETWORK": {
     "NAME": "Ethereum",
     "SYMBOL": "ETH",
-    "ID": 4
+    "ID": 1
   },
   "NETWORK_ID_WALLET": 1,
   "NFT_NAME": "Twisted Bear NFT",
@@ -15,7 +15,7 @@
   "WEI_COST_PU": 69000000000000000,
   "DISPLAY_COST_PU": 0.069,   
   "MAX_LIMIT": 2,
-  "GAS_LIMIT": 90000,
+  "GAS_LIMIT": 150000,
   "MARKETPLACE": "Opeansea",
   "MARKETPLACE_LINK": "https://opensea.io/collection/mutant-age-camel-club",
   "SHOW_BACKGROUND": true
