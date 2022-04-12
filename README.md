@@ -1,13 +1,12 @@
-# Metaverse Secret NFT's Mint Page
+# Twisted Bear's NFT's Mint Page
 
-![](https://raw.githubusercontent.com/waleed677/Joking-Jungle-Cats-Mint-Page/master/public/config/images/banner.jpeg)
 
 ## Website Link
 
-https://mint.metaversessecret.com/
+https://mint.twistedbears.io/
 
-# From Fleek Access
-https://delicate-silence-7993.on.fleek.co/
+https://twistedbears.io/
+
 
 
 ## Installation
@@ -28,6 +27,7 @@ https://delicate-silence-7993.on.fleek.co/
 
 # Contract Address
 
+https://etherscan.io/address/https://etherscan.io/address/0xB1B75818b813af1Ad69e8827533aE3bFFC81f137
 
 
 You can hire me for blockchain work on
